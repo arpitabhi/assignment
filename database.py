@@ -1,6 +1,5 @@
 import psycopg2
 
-
 def fetch_data(tablename,country_code,field,value):
     #establishing the connection
     conn = psycopg2.connect(
