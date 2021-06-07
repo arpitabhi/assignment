@@ -1,8 +1,5 @@
-import requests
 from datetime import datetime
-
 from fastapi import Depends, FastAPI, HTTPException
-from sqlalchemy.orm import Session
 
 from database import fetch_data
 from serialize import requestclass,responseclass
@@ -59,14 +56,11 @@ async def show_records(customer:requestclass) -> responseclass:
             value='181'
 
     try:
-        print(table,field,value)
+        #print(table,field,value)
         records = fetch_data(tablename=table,country_code='Peru',field=field,value=value)
-        print(records)
+        #print(records)
         
-        if len(records)>0:
-            return {"vocher_amount": records[0][0]}
-        else:
-            return {"vocher_amount": ''}
+        return {"vocher_amount": records[0][0]}
     except:
         return {"vocher_amount": ''}
 
