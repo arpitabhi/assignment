@@ -1,0 +1,5 @@
+pyspark
+psycopg2
+fastapi
+pydantic
+typing
