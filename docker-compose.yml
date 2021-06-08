@@ -18,17 +18,12 @@ services:
           - ./sql/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
 
     spark:
-        image: jupyter/pyspark-notebook
-        ports:
-          - "8888:8888"
-          - "4040-4080:4040-4080"
-        volumes:
-          - ./notebooks:/home/jovyan/work/notebooks/
+        build: './datapipeline'
         depends_on:
           - postgres
           
     web:
-        build: .
+        build: './api'
         ports:
           - "8000:8000"
         volumes:
