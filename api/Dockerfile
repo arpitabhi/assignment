@@ -15,4 +15,4 @@ COPY . .
 # Keeping port 8000 for FastAPI
 EXPOSE 8000
 # command to run on container start
-CMD [ "python", "./api/main.py" ]
+CMD [ "python", "/.api/main.py" ]

@@ -98,7 +98,7 @@ def write_to_postgres(df,table):
     mode = "overwrite"
     user="postgres"
     password = "postgres"
-
+	
     df.write.format("jdbc").mode(mode) \
             .option('driver', 'org.postgresql.Driver') \
             .option("url", url_connect) \
@@ -116,7 +116,8 @@ if __name__ == "__main__":
     
     # path of the input file
     path = os.path.join(os.getcwd(),"data.parquet.gzip")
-
+    os.environ['PYSPARK_SUBMIT_ARGS'] = '--packages org.postgresql:postgresql:42.1.1 pyspark-shell'
+    
     df=read_df(spark=spark,path=path)
     df=format_df(df)
     

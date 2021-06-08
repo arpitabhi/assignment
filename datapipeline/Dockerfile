@@ -44,13 +44,45 @@
 
 # set the working directory in the container
 
-FROM python:3.7-stretch
+# FROM python:3.7-stretch
+
+# RUN apt-get update
+# RUN apt-get install default-jdk -y
+
+# ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
+# RUN export JAVA_HOME
+
+# # ENV POST_URL https://jdbc.postgresql.org/download/postgresql-42.2.5.jar
+# # RUN wget ${POST_URL}
+# # RUN mv postgresql-42.2.5.jar /opt/spark/jars
+
+
+
+FROM python:3.8
+
+
+ENV SPARK_VERSION 3.1.1
+ENV SPARK_HADOOP_PROFILE 3.2
+ENV SPARK_SRC_URL https://www.apache.org/dist/spark/spark-$SPARK_VERSION/spark-${SPARK_VERSION}-bin-hadoop${SPARK_HADOOP_PROFILE}.tgz
+ENV SPARK_HOME=/opt/spark
+ENV PATH $PATH:$SPARK_HOME/bin
+
+RUN wget ${SPARK_SRC_URL}
+RUN tar -xzf spark-${SPARK_VERSION}-bin-hadoop${SPARK_HADOOP_PROFILE}.tgz
+
+RUN mv spark-${SPARK_VERSION}-bin-hadoop${SPARK_HADOOP_PROFILE} /opt/spark
+RUN rm -f spark-${SPARK_VERSION}-bin-hadoop${SPARK_HADOOP_PROFILE}.tgz
 
 RUN apt-get update
 RUN apt-get install default-jdk -y
 
-ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
+ENV JAVA_HOME  /usr/lib/jvm/java-8-openjdk-amd64/
 RUN export JAVA_HOME
+
+ENV POST_URL https://jdbc.postgresql.org/download/postgresql-42.2.5.jar
+RUN wget ${POST_URL}
+RUN mv postgresql-42.2.5.jar /opt/spark/jars
+
 
 WORKDIR /code
 
