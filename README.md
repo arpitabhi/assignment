@@ -1,5 +1,6 @@
-Hi in this solution of the problem statement.
-I have divided it into 2 specific task. :+1:
+# Hi in this solution of the problem statement.
+## I have divided it into 2 specific task. :+1:
+
 
 
 **1. Creating a pipeline for data ingestion, transformation and loading.**
@@ -9,6 +10,23 @@ I have divided it into 2 specific task. :+1:
 First run the backing services which include postgres.
 Then run the datapipeline job.
 Then start the web app and its API endpoint.
+
+
+## Prerequisites of setting up Environment
+
+## Overview
+
+### Repository structure
+
+In this repositary, we have following services: 
+
+- `datapipeline`
+- `web api`
+
+
+
+
+
 
 
 
