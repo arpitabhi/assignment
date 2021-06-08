@@ -26,14 +26,16 @@ In this repositary, we have following services:
 
 ### Build docker images
 * Using docker compose build command
-```docker compose build
+```ssh
+docker compose build
 
 // This will build images for postgres, web api and datapipeline
 ```
 
 ### Start the services and the containers
 * Using docker compose up command
-```docker compose up -d
+```ssh
+docker compose up -d
 
 // This will start the postgres server, create the pipeline and do the transformation and load operation
 // It will also expose the API. Can access the swagger at 127.0.0.1:8000/docs
