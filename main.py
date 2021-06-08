@@ -1,6 +1,6 @@
 from datetime import datetime
 from fastapi import Depends, FastAPI, HTTPException
-
+import uvicorn
 from database import fetch_data
 from serialize import requestclass,responseclass
 import re
@@ -66,5 +66,7 @@ async def show_records(customer:requestclass) -> responseclass:
 
 
 
+if __name__ == '__main__':
+    uvicorn.run(app)
 
 

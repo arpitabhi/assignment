@@ -1,5 +1,6 @@
 pyspark
 psycopg2
 fastapi
+uvicorn
 pydantic
 typing
