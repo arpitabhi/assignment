@@ -65,7 +65,7 @@ ENV SPARK_VERSION 3.1.1
 ENV SPARK_HADOOP_PROFILE 3.2
 ENV SPARK_SRC_URL https://www.apache.org/dist/spark/spark-$SPARK_VERSION/spark-${SPARK_VERSION}-bin-hadoop${SPARK_HADOOP_PROFILE}.tgz
 ENV SPARK_HOME=/opt/spark
-ENV PATH $PATH:$SPARK_HOME/bin
+# ENV PATH $PATH:$SPARK_HOME/bin
 
 RUN wget ${SPARK_SRC_URL}
 RUN tar -xzf spark-${SPARK_VERSION}-bin-hadoop${SPARK_HADOOP_PROFILE}.tgz
