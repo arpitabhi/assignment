@@ -24,10 +24,20 @@ services:
           - "4040-4080:4040-4080"
         volumes:
           - ./notebooks:/home/jovyan/work/notebooks/
+        depends_on:
+          - postgres
+          
+    web:
+        build: .
+        ports:
+          - "8000:8000"
+        volumes:
+          - .:/code
 
-    python:
-      image: tiangolo/uvicorn-gunicorn-fastapi
-      ports:
-        - '8080:8080'
+        depends_on:
+          - postgres
+
+
+      
 
           

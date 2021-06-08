@@ -9,7 +9,6 @@ def session():
     Spark Session for initializing the session
 
     '''
-
     # Created spark session with local mode
     spark = SparkSession.builder.master("local[*]").getOrCreate()
     #spark.sparkContext.setLogLevel("DEBUG")
