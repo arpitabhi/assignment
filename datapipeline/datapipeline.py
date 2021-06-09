@@ -3,6 +3,7 @@ from pyspark.sql import functions as f
 from pyspark.sql import Window
 from pyspark.sql.types import DoubleType
 import os
+import psycopg2
 
 
 def session():
@@ -94,7 +95,7 @@ def write_to_postgres(df,table):
 
     '''
 
-    url_connect = "jdbc:postgresql://localhost:5432/assignment"
+    url_connect = "jdbc:postgresql://host.docker.internal:5432/assignment"
     mode = "overwrite"
     user="postgres"
     password = "postgres"
@@ -108,6 +109,36 @@ def write_to_postgres(df,table):
             .save()
 
 
+def create_tables():
+
+    conn = psycopg2.connect(
+    database="assignment", user='postgres', password='postgres', host='host.docker.internal', port= '5432'
+    )
+
+    #Setting auto commit false
+    conn.autocommit = True
+
+    #Creating a cursor object using the cursor() method
+    cursor = conn.cursor()
+
+    #Retrieving data
+
+    cursor.execute(''' DROP SCHEMA IF EXISTS voucher CASCADE; ''')
+
+    cursor.execute(''' DROP SCHEMA IF EXISTS fvoucher CASCADE; ''')
+
+    cursor.execute(''' create schema voucher; create schema fvoucher; ''')
+
+    cursor.execute(''' create table voucher.recency_table (country_code VARCHAR(100),recency_segment VARCHAR(100), voucher_amount VARCHAR(100) );
+                        create table fvoucher.frequency_table (country_code VARCHAR(100),frequent_segment VARCHAR(100), voucher_amount VARCHAR(100) );  ''')
+
+    
+    #Commit your changes in the database
+    conn.commit()
+
+    #Closing the connection
+    conn.close()
+
 
 
 if __name__ == "__main__":
@@ -116,7 +147,7 @@ if __name__ == "__main__":
     
     # path of the input file
     path = os.path.join(os.getcwd(),"data.parquet.gzip")
-    os.environ['PYSPARK_SUBMIT_ARGS'] = '--packages org.postgresql:postgresql:42.1.1 pyspark-shell'
+    #os.environ['PYSPARK_SUBMIT_ARGS'] = '--packages org.postgresql:postgresql:42.1.1 pyspark-shell'
     
     df=read_df(spark=spark,path=path)
     df=format_df(df)
@@ -127,6 +158,8 @@ if __name__ == "__main__":
     fre_table = "fvoucher.frequency_table"
     rec_table = "voucher.recency_table"
 
+    create_tables()
     write_to_postgres(df_freq,fre_table)
     write_to_postgres(df_recen,rec_table)
+    
     spark.stop()

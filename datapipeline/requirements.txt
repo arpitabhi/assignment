@@ -1,3 +1,4 @@
 pyspark
 pydantic
 typing
+psycopg2

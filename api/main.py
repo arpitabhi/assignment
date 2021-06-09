@@ -61,7 +61,8 @@ async def show_records(customer:requestclass) -> responseclass:
         #print(records)
         
         return {"vocher_amount": records[0][0]}
-    except:
+    except Exception as E:
+        print(E)
         return {"vocher_amount": ''}
 
 

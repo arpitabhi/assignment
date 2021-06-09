@@ -76,8 +76,8 @@ RUN rm -f spark-${SPARK_VERSION}-bin-hadoop${SPARK_HADOOP_PROFILE}.tgz
 RUN apt-get update
 RUN apt-get install default-jdk -y
 
-ENV JAVA_HOME  /usr/lib/jvm/java-8-openjdk-amd64/
-RUN export JAVA_HOME
+#ENV JAVA_HOME  /usr/lib/jvm/java-8-openjdk-amd64/
+#RUN export JAVA_HOME
 
 ENV POST_URL https://jdbc.postgresql.org/download/postgresql-42.2.5.jar
 RUN wget ${POST_URL}

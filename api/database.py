@@ -3,7 +3,7 @@ import psycopg2
 def fetch_data(tablename,country_code,field,value):
     #establishing the connection
     conn = psycopg2.connect(
-    database="assignment", user='postgres', password='postgres', host='127.0.0.1', port= '5432'
+    database="assignment", user='postgres', password='postgres', host='host.docker.internal', port= '5432'
     )
 
     #Setting auto commit false
@@ -26,3 +26,4 @@ def fetch_data(tablename,country_code,field,value):
     conn.close()
 
     return result
+
