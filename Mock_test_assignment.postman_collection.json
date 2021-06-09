@@ -1,0 +1,571 @@
+{
+	"info": {
+		"_postman_id": "7decac82-0c39-4f67-9997-d7d1c71a844b",
+		"name": "Mock_test_assignment",
+		"description": "This contains the all the edge cases for the assignment.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "test_recency_segment_negative value",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"customer_id\": 123,\r\n  \"country_code\": \"Peru\",\r\n  \"last_order_ts\": \"2022-05-03 00:00:00\",\r\n  \"first_order_ts\": \"2017-05-03 00:00:00\",\r\n  \"total_orders\": 15,\r\n  \"segment_name\": \"recency_segment\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/voucher/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"voucher",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test_recency_segment_less_than_30",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "07b12757-7f08-4656-9f4f-5e5964799802",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"customer_id\": 123,\r\n  \"country_code\": \"Peru\",\r\n  \"last_order_ts\": \"2021-05-03 00:00:00\",\r\n  \"first_order_ts\": \"2017-05-03 00:00:00\",\r\n  \"total_orders\": 15,\r\n  \"segment_name\": \"recency_segment\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/voucher/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"voucher",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test_recency_segment_less_than_60",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c4a46413-70c7-4e28-9eaa-dd9becfed184",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"customer_id\": 123,\r\n  \"country_code\": \"Peru\",\r\n  \"last_order_ts\": \"2021-04-30 00:00:00\",\r\n  \"first_order_ts\": \"2017-05-03 00:00:00\",\r\n  \"total_orders\": 15,\r\n  \"segment_name\": \"recency_segment\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/voucher/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"voucher",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test_recency_segment_less_than_90",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "09b642da-4f01-4dfe-aa09-9a829eb121d5",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"customer_id\": 123,\r\n  \"country_code\": \"Peru\",\r\n  \"last_order_ts\": \"2021-03-30 00:00:00\",\r\n  \"first_order_ts\": \"2017-05-03 00:00:00\",\r\n  \"total_orders\": 15,\r\n  \"segment_name\": \"recency_segment\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/voucher/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"voucher",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test_recency_segment_less_than_120",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "050ebba0-0871-4a74-a05c-b914a62e48b4",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"customer_id\": 123,\r\n  \"country_code\": \"Peru\",\r\n  \"last_order_ts\": \"2021-02-26 00:00:00\",\r\n  \"first_order_ts\": \"2017-05-03 00:00:00\",\r\n  \"total_orders\": 15,\r\n  \"segment_name\": \"recency_segment\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/voucher/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"voucher",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test_recency_segment_less_than_180",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c466c76b-09c0-4202-bbf3-eef8be3931c5",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"customer_id\": 123,\r\n  \"country_code\": \"Peru\",\r\n  \"last_order_ts\": \"2020-12-26 00:00:00\",\r\n  \"first_order_ts\": \"2017-05-03 00:00:00\",\r\n  \"total_orders\": 15,\r\n  \"segment_name\": \"recency_segment\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/voucher/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"voucher",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test_recency_segment_greater_than_181",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b6df88e6-af92-41bf-b46d-c3531123beb8",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"customer_id\": 123,\r\n  \"country_code\": \"Peru\",\r\n  \"last_order_ts\": \"2020-10-26 00:00:00\",\r\n  \"first_order_ts\": \"2017-05-03 00:00:00\",\r\n  \"total_orders\": 15,\r\n  \"segment_name\": \"recency_segment\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/voucher/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"voucher",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test_frequency_segment_negative_value",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "69dd33c5-06d4-4ef9-bc44-ebc4250758f9",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"customer_id\": 123,\r\n  \"country_code\": \"Peru\",\r\n  \"last_order_ts\": \"2022-05-03 00:00:00\",\r\n  \"first_order_ts\": \"2017-05-03 00:00:00\",\r\n  \"total_orders\": -29,\r\n  \"segment_name\": \"frequent_segment\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/voucher/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"voucher",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test_frequency_segment_less_than_4",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ace799b9-4d3e-4b42-9b33-dbb70082ccbe",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"customer_id\": 123,\r\n  \"country_code\": \"Peru\",\r\n  \"last_order_ts\": \"2022-05-03 00:00:00\",\r\n  \"first_order_ts\": \"2017-05-03 00:00:00\",\r\n  \"total_orders\": 3,\r\n  \"segment_name\": \"frequent_segment\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/voucher/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"voucher",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test_frequency_segment_less_than_13",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "892cc7d0-008a-48bf-b9ef-18c62f6e513f",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"customer_id\": 123,\r\n  \"country_code\": \"Peru\",\r\n  \"last_order_ts\": \"2022-05-03 00:00:00\",\r\n  \"first_order_ts\": \"2017-05-03 00:00:00\",\r\n  \"total_orders\": 12,\r\n  \"segment_name\": \"frequent_segment\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/voucher/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"voucher",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test_frequency_segment_less_than_37",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "28406fd8-d1a6-4a0a-855c-cdd230c5d5f4",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"customer_id\": 123,\r\n  \"country_code\": \"Peru\",\r\n  \"last_order_ts\": \"2022-05-03 00:00:00\",\r\n  \"first_order_ts\": \"2017-05-03 00:00:00\",\r\n  \"total_orders\": 35,\r\n  \"segment_name\": \"frequent_segment\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/voucher/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"voucher",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test_frequency_segment_greater_than_38",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dec82e9f-ab25-4926-92f6-258485ce1e67",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"customer_id\": 123,\r\n  \"country_code\": \"Peru\",\r\n  \"last_order_ts\": \"2022-05-03 00:00:00\",\r\n  \"first_order_ts\": \"2017-05-03 00:00:00\",\r\n  \"total_orders\": 40,\r\n  \"segment_name\": \"frequent_segment\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/voucher/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"voucher",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
