@@ -25,7 +25,7 @@ In this repositary, we have following services:
 
 ### Architecture design
 
-![Design](https://github.com/)
+![Design](https://github.com/arpitabhi/assignment/blob/main/architecture.jpg/)
 
 
 
