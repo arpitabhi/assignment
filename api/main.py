@@ -16,6 +16,7 @@ async def show_records(customer:requestclass) -> responseclass:
     total_orders = customer.total_orders
     segment_name = customer.segment_name
     
+    
     last_order_ts = datetime.strptime(last_order_ts,'%Y-%m-%d %H:%M:%S')
     ts = datetime.now()
     
@@ -57,7 +58,7 @@ async def show_records(customer:requestclass) -> responseclass:
 
     try:
         #print(table,field,value)
-        records = fetch_data(tablename=table,country_code='Peru',field=field,value=value)
+        records = fetch_data(tablename=table,country_code=country_code,field=field,value=value)
         #print(records)
         
         return {"vocher_amount": records[0][0]}

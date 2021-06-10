@@ -157,9 +157,11 @@ if __name__ == "__main__":
     
     fre_table = "fvoucher.frequency_table"
     rec_table = "voucher.recency_table"
+    datafame = "dataframe"
 
     create_tables()
     write_to_postgres(df_freq,fre_table)
     write_to_postgres(df_recen,rec_table)
+    write_to_postgres(df,datafame)
     
     spark.stop()
