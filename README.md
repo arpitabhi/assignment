@@ -4,15 +4,14 @@
 
 
 **1. Creating a pipeline for data ingestion, transformation and loading.**
+
 **2. Create an API to access the voucher amount for specific segment of customer.**
 
 
-First run the backing services which include postgres.
-Then run the datapipeline job.
-Then start the web app and its API endpoint.
-
 
 ## Prerequisites of setting up Environment
+- `Git`
+- `Docker`
 
 ## Overview
 
@@ -27,7 +26,14 @@ In this repositary, we have following services:
 
 ![Design](https://github.com/arpitabhi/assignment/blob/main/architecture.jpg/)
 
+### Steps to run the services.
 
+## 1. Clone git repo
+```ssh
+git clone 
+
+// This will clone this git repo to your local machine.
+```
 
 ### Build docker images
 * Using docker compose build command
