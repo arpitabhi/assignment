@@ -61,9 +61,14 @@ docker compose up -d
 
 ## 2. Test the services.
 ```ssh
-access swagger on 127.0.0.1:8000/docs 
+access swagger on 127.0.0.1:8000/docs test with the default request.
 
-// This will change the directory.
+Run the postman collection.
+1. Import the json file.
+2. Run the collection.
+3. Check the results.
+
+
 ```
 
 
