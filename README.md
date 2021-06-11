@@ -28,14 +28,21 @@ In this repositary, we have following services:
 
 ### Steps to run the services.
 
-## 1. Clone git repo
+## 1. Clone git repo.
 ```ssh
-git clone 
+git clone https://github.com/arpitabhi/assignment.git
 
 // This will clone this git repo to your local machine.
 ```
+## 2. Navigate to the repo.
+```ssh
+cd ./assignment
 
-### Build docker images
+// This will change the directory.
+```
+
+
+## 3. Build docker images
 * Using docker compose build command
 ```ssh
 docker compose build
@@ -43,7 +50,7 @@ docker compose build
 // This will build images for postgres, web api and datapipeline
 ```
 
-### Start the services and the containers
+## 4. Start the services and the containers
 * Using docker compose up command
 ```ssh
 docker compose up -d
@@ -52,7 +59,12 @@ docker compose up -d
 // It will also expose the API. Can access the swagger at 127.0.0.1:8000/docs
 ```
 
+## 2. Test the services.
+```ssh
+access swagger on 127.0.0.1:8000/docs 
 
+// This will change the directory.
+```
 
 
 
