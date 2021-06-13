@@ -3,6 +3,8 @@ from fastapi import Depends, FastAPI, HTTPException
 import uvicorn
 from database import fetch_data
 from serialize import requestclass,responseclass
+from config import FREQUENCY_TABLE,FREQUENT_FIELD, RECENCY_TABLE,RECENCY_FIELD, VOUCHER_NAME, \
+                    RECENCY_DICT, RECENCY_LIST, FREQUENCY_LIST, FREQUENCY_DICT
 import re
 
 app = FastAPI()
@@ -25,46 +27,32 @@ async def show_records(customer:requestclass) -> responseclass:
 
     
     if re.search('frequent.*',segment_name):
-        table = 'fvoucher.frequency_table'
-        field = 'frequent_segment'
-        if total_orders<0:
-            value = '-1'
-        elif total_orders>=0 and total_orders<=4:
-            value = '0'
-        elif total_orders>=5 and total_orders<=13:
-            value = '5'
-        elif total_orders>=14 and total_orders<=37:
-            value = '14'
-        else:
-            value = '38'
+        table = FREQUENCY_TABLE
+        field = FREQUENT_FIELD
+        ls=FREQUENCY_LIST
+        ds=FREQUENCY_DICT
 
     elif re.search('recency.*',segment_name):
-        table = 'voucher.recency_table'
-        field = 'recency_segment'
-        if ts<0:
-            value='-1'
-        elif ts<30:
-            value='0'
-        elif ts<61:
-            value='30'
-        elif ts<91:
-            value='61'
-        elif ts<121:
-            value='91'
-        elif ts<181:
-            value='121'
-        else:
-            value='181'
+        table = RECENCY_TABLE
+        field = RECENCY_FIELD
+        ls=RECENCY_LIST
+        ds=RECENCY_DICT
+
+    for key in ls:
+        if ts<key:
+            value=ds[key]
+            break
+
 
     try:
         #print(table,field,value)
         records = fetch_data(tablename=table,country_code=country_code,field=field,value=value)
         #print(records)
         
-        return {"vocher_amount": records[0][0]}
+        return {VOUCHER_NAME: records[0][0]}
     except Exception as E:
         print(E)
-        return {"vocher_amount": ''}
+        return {VOUCHER_NAME: ''}
 
 
 
