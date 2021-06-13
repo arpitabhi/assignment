@@ -1,9 +1,11 @@
 import psycopg2
 from config import USER,PASSWORD, PORT, HOST, RETRY, DATABASE
 
-def connect_to_db(database):
+
+def connect_to_db(database,RETRY=5):
 
     #establishing the connection
+    ERROR = None
     while RETRY !=0 :
         try:
             conn = psycopg2.connect(database=database, user=USER, password=PASSWORD, host=HOST, port= PORT)
@@ -13,6 +15,8 @@ def connect_to_db(database):
         except Exception as E:
             print(f"Database connection failed, retring for {RETRY} time : {E}")
             RETRY-=1
+            ERROR = E
+    raise Exception(ERROR)
     
 def query_to_fetch_coucher(tablename,country_code,field,value):
     
@@ -20,9 +24,9 @@ def query_to_fetch_coucher(tablename,country_code,field,value):
 
     return query
 
-def fetch_data(tablename,country_code,field,value):
+def fetch_data(tablename,country_code,field,value,RETRY):
 
-    conn = connect_to_db(DATABASE)
+    conn = connect_to_db(DATABASE,RETRY=RETRY)
     #Creating a cursor object using the cursor() method
     cursor = conn.cursor()
 

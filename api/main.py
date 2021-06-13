@@ -4,7 +4,7 @@ import uvicorn
 from database import fetch_data
 from serialize import requestclass,responseclass
 from config import FREQUENCY_TABLE,FREQUENT_FIELD, RECENCY_TABLE,RECENCY_FIELD, VOUCHER_NAME, \
-                    RECENCY_DICT, RECENCY_LIST, FREQUENCY_LIST, FREQUENCY_DICT
+                    RECENCY_DICT, RECENCY_LIST, FREQUENCY_LIST, FREQUENCY_DICT, RETRY
 import re
 
 app = FastAPI()
@@ -46,7 +46,7 @@ async def show_records(customer:requestclass) -> responseclass:
 
     try:
         #print(table,field,value)
-        records = fetch_data(tablename=table,country_code=country_code,field=field,value=value)
+        records = fetch_data(tablename=table,country_code=country_code,field=field,value=value,RETRY=RETRY)
         #print(records)
         
         return {VOUCHER_NAME: records[0][0]}

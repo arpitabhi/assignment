@@ -34,7 +34,7 @@ services:
           - .:/code
 
         depends_on:
-          - postgres
+          - spark
         extra_hosts:
           - "host.docker.internal:host-gateway"
 

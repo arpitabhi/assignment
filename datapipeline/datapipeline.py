@@ -4,6 +4,10 @@ from pyspark.sql import Window
 from pyspark.sql.types import DoubleType
 import os
 import psycopg2
+import copy
+from config import FREQUENCY_TABLE, RECENCY_TABLE, URL_CONNECT, MODE, USER, PASSWORD, \
+                    PORT, HOST, RETRY, DATABASE, POSTGRES_DRIVER, DROP_SCHEMA_VOUCHER, DROP_SCHEMA_FVOUCHER, \
+                        CREATE_SCHEMA, CREATE_TABLE
 
 
 def session():
@@ -88,51 +92,58 @@ def recent_table(df_select):
     return df_recen
 
 
-def write_to_postgres(df,table):
+def write_to_postgres(df,table,RETRY=5):
 
     '''
     to write the df to the postgress table
 
     '''
+    ERROR = None
+    while RETRY >0:
+        try:
+            df.write.format("jdbc").mode(MODE) \
+                    .option('driver', POSTGRES_DRIVER) \
+                    .option("url", URL_CONNECT) \
+                    .option("dbtable", table) \
+                    .option("user", USER) \
+                    .option("password", PASSWORD) \
+                    .save()
+            break
+        except Exception as E:
+            print(f"Database connection failed, retring for {RETRY} time : {E}")
+            RETRY-=1
+            ERROR=E
 
-    url_connect = "jdbc:postgresql://host.docker.internal:5432/assignment"
-    mode = "overwrite"
-    user="postgres"
-    password = "postgres"
-	
-    df.write.format("jdbc").mode(mode) \
-            .option('driver', 'org.postgresql.Driver') \
-            .option("url", url_connect) \
-            .option("dbtable", table) \
-            .option("user", user) \
-            .option("password", password) \
-            .save()
 
+def connect_to_db(database,RETRY=5):
 
-def create_tables():
+    #establishing the connection
+    ERROR=None
+    while RETRY >0 :
+        try:
+            conn = psycopg2.connect(database=database, user=USER, password=PASSWORD, host=HOST, port= PORT)
+            conn.autocommit = True
+            return conn
 
-    conn = psycopg2.connect(
-    database="assignment", user='postgres', password='postgres', host='host.docker.internal', port= '5432'
-    )
+        except Exception as E:
+            print(f"Database connection failed, retring for {RETRY} time : {E}")
+            ERROR=E
+            RETRY-=1
+    raise Exception(ERROR)
 
-    #Setting auto commit false
-    conn.autocommit = True
+def create_tables(RETRY):
+
+    conn = connect_to_db(database=DATABASE,RETRY=RETRY)
 
     #Creating a cursor object using the cursor() method
     cursor = conn.cursor()
 
-    #Retrieving data
+    #Creating schema and tables
+    cursor.execute(DROP_SCHEMA_VOUCHER)
+    cursor.execute(DROP_SCHEMA_FVOUCHER)
+    cursor.execute(CREATE_SCHEMA)
+    cursor.execute(CREATE_TABLE)
 
-    cursor.execute(''' DROP SCHEMA IF EXISTS voucher CASCADE; ''')
-
-    cursor.execute(''' DROP SCHEMA IF EXISTS fvoucher CASCADE; ''')
-
-    cursor.execute(''' create schema voucher; create schema fvoucher; ''')
-
-    cursor.execute(''' create table voucher.recency_table (country_code VARCHAR(100),recency_segment VARCHAR(100), voucher_amount VARCHAR(100) );
-                        create table fvoucher.frequency_table (country_code VARCHAR(100),frequent_segment VARCHAR(100), voucher_amount VARCHAR(100) );  ''')
-
-    
     #Commit your changes in the database
     conn.commit()
 
@@ -147,21 +158,15 @@ if __name__ == "__main__":
     
     # path of the input file
     path = os.path.join(os.getcwd(),"data.parquet.gzip")
-    #os.environ['PYSPARK_SUBMIT_ARGS'] = '--packages org.postgresql:postgresql:42.1.1 pyspark-shell'
     
     df=read_df(spark=spark,path=path)
     df=format_df(df)
     
     df_freq=frequent_table(df)
     df_recen=recent_table(df)
-    
-    fre_table = "fvoucher.frequency_table"
-    rec_table = "voucher.recency_table"
-    datafame = "dataframe"
 
-    create_tables()
-    write_to_postgres(df_freq,fre_table)
-    write_to_postgres(df_recen,rec_table)
-    #write_to_postgres(df,datafame)
+    create_tables(RETRY=RETRY)
+    write_to_postgres(df_freq,FREQUENCY_TABLE,RETRY=RETRY)
+    write_to_postgres(df_recen,RECENCY_TABLE,RETRY=RETRY)
     
     spark.stop()
