@@ -95,7 +95,7 @@ def write_to_postgres(df,table):
 
     '''
 
-    url_connect = "jdbc:postgresql://postgres:5432/assignment"
+    url_connect = "jdbc:postgresql://host.docker.internal:5432/assignment"
     mode = "overwrite"
     user="postgres"
     password = "postgres"
@@ -112,7 +112,7 @@ def write_to_postgres(df,table):
 def create_tables():
 
     conn = psycopg2.connect(
-    database="assignment", user='postgres', password='postgres', host='postgres', port= '5432'
+    database="assignment", user='postgres', password='postgres', host='host.docker.internal', port= '5432'
     )
 
     #Setting auto commit false
