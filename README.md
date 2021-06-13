@@ -11,7 +11,7 @@
 
 ## Prerequisites of setting up Environment
 - `Git`
-- `Docker`
+- `Docker for Desktop`
 
 ## Overview
 
