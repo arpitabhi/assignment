@@ -59,7 +59,7 @@ docker compose up -d
 // It will also expose the API. Can access the swagger at 127.0.0.1:8000/docs
 ```
 
-## 2. Test the services.
+## 5. Test the services.
 ```ssh
 access swagger on 127.0.0.1:8000/docs test with the default request.
 
