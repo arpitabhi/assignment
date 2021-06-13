@@ -5,10 +5,11 @@ from database import fetch_data
 from serialize import requestclass,responseclass
 from config import FREQUENCY_TABLE,FREQUENT_FIELD, RECENCY_TABLE,RECENCY_FIELD, VOUCHER_NAME, \
                     RECENCY_DICT, RECENCY_LIST, FREQUENCY_LIST, FREQUENCY_DICT, RETRY
+from loggingfile import Logger
 import re
 
 app = FastAPI()
-
+LOG=Logger("api_logging_file")
 
 @app.post("/voucher/", name="voucher: get")
 async def show_records(customer:requestclass) -> responseclass:
@@ -17,7 +18,7 @@ async def show_records(customer:requestclass) -> responseclass:
     first_order_ts = customer.first_order_ts
     total_orders = customer.total_orders
     segment_name = customer.segment_name
-    
+    LOG.info("request received")
     
     last_order_ts = datetime.strptime(last_order_ts,'%Y-%m-%d %H:%M:%S')
     ts = datetime.now()
@@ -25,14 +26,16 @@ async def show_records(customer:requestclass) -> responseclass:
     ts = ts-last_order_ts
     ts=ts.days
 
-    
+    LOG.info("Validating request")
     if re.search('frequent.*',segment_name):
+        LOG.info("Request type is frequent segment")
         table = FREQUENCY_TABLE
         field = FREQUENT_FIELD
         ls=FREQUENCY_LIST
         ds=FREQUENCY_DICT
 
     elif re.search('recency.*',segment_name):
+        LOG.info("Request type is Recent segment")
         table = RECENCY_TABLE
         field = RECENCY_FIELD
         ls=RECENCY_LIST
@@ -45,15 +48,14 @@ async def show_records(customer:requestclass) -> responseclass:
 
 
     try:
-        #print(table,field,value)
+        LOG.info(f"Fetching voucher amount for frequent segment for country {country_code}")
         records = fetch_data(tablename=table,country_code=country_code,field=field,value=value,RETRY=RETRY)
-        #print(records)
-        
+        LOG.info("Fetch data. Preparing response")
         return {VOUCHER_NAME: records[0][0]}
     except Exception as E:
-        print(E)
+        LOG.error("Error in fetching voucher value")
+        LOG.info(f"Exception occured with error code : {E}")
         return {VOUCHER_NAME: ''}
-
 
 
 if __name__ == '__main__':

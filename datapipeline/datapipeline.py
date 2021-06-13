@@ -8,7 +8,9 @@ import copy
 from config import FREQUENCY_TABLE, RECENCY_TABLE, URL_CONNECT, MODE, USER, PASSWORD, \
                     PORT, HOST, RETRY, DATABASE, POSTGRES_DRIVER, DROP_SCHEMA_VOUCHER, DROP_SCHEMA_FVOUCHER, \
                         CREATE_SCHEMA, CREATE_TABLE
+from loggingfile import Logger
 
+LOG=Logger("data_pipeline_log_file")
 
 def session():
     '''
@@ -154,19 +156,32 @@ def create_tables(RETRY):
 
 if __name__ == "__main__":
 
+    LOG.info("Starting spark session")
     spark = session()
     
     # path of the input file
     path = os.path.join(os.getcwd(),"data.parquet.gzip")
     
+    LOG.info("Reading data")
     df=read_df(spark=spark,path=path)
+
+    LOG.info("formatting data")
     df=format_df(df)
     
+    LOG.info("forming frequent dataframe")
     df_freq=frequent_table(df)
+
+    LOG.info("forming Recent dataframe")
     df_recen=recent_table(df)
 
+    LOG.info("Creating dataframe")
     create_tables(RETRY=RETRY)
+
+    LOG.info("Writing frequent dataframe to postgres table")
     write_to_postgres(df_freq,FREQUENCY_TABLE,RETRY=RETRY)
+
+    LOG.info("Writing Recent dataframe to postgres table")
     write_to_postgres(df_recen,RECENCY_TABLE,RETRY=RETRY)
     
+    LOG.info("Stopping spark session")
     spark.stop()
