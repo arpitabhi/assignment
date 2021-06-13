@@ -12,6 +12,7 @@ services:
             max-file: "3"
         extra_hosts:
           - "host.docker.internal:host-gateway"
+        
         ports:
           - '5432:5432'
         
@@ -22,6 +23,8 @@ services:
         build: './datapipeline'
         depends_on:
           - postgres
+        extra_hosts:
+          - "host.docker.internal:host-gateway"
           
     web:
         build: './api'
@@ -32,6 +35,8 @@ services:
 
         depends_on:
           - postgres
+        extra_hosts:
+          - "host.docker.internal:host-gateway"
 
 
       

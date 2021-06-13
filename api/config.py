@@ -28,3 +28,13 @@ FREQUENCY_DICT = {
                 }
 FREQUENCY_LIST = list(FREQUENCY_DICT.keys())
 FREQUENCY_LIST.sort()
+
+
+USER='postgres'
+PASSWORD='postgres'
+PORT= '5432'
+HOST = 'host.docker.internal'
+RETRY = 5
+DATABASE = "assignment"
+
+
