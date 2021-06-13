@@ -8,7 +8,7 @@ class requestclass(BaseModel):
    last_order_ts: str = "2018-05-03 00:00:00"
    first_order_ts: str = "2017-05-03 00:00:00"
    total_orders: int = 15
-   segment_name: str = "recency_segment"
+   segment_name: str = "frequent_segment"
 
 
 class responseclass(BaseModel):

@@ -1,9 +1,11 @@
 import psycopg2
 
 def fetch_data(tablename,country_code,field,value):
+    host1 = 'host.docker.internal'
+    host2 = 'postgres'
     #establishing the connection
     conn = psycopg2.connect(
-    database="assignment", user='postgres', password='postgres', host='host.docker.internal', port= '5432'
+    database="assignment", user='postgres', password='postgres', host=host2, port= '5432'
     )
 
     #Setting auto commit false
