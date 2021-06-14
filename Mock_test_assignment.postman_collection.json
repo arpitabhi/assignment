@@ -8,6 +8,27 @@
 	"item": [
 		{
 			"name": "test_recency_segment_negative value",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body contains Voucher Key\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"vocher_amount\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body contains Voucher Value\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"2640.0\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -44,13 +65,18 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "07b12757-7f08-4656-9f4f-5e5964799802",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							""
+							"pm.test(\"Body contains Voucher Key\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"vocher_amount\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body contains Voucher Value\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"2640.0\");\r",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -92,13 +118,18 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "c4a46413-70c7-4e28-9eaa-dd9becfed184",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							""
+							"pm.test(\"Body contains Voucher Key\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"vocher_amount\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body contains Voucher Value\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"2640.0\");\r",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -140,13 +171,18 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "09b642da-4f01-4dfe-aa09-9a829eb121d5",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							""
+							"pm.test(\"Body contains Voucher Key\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"vocher_amount\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body contains Voucher Value\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"2640.0\");\r",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -188,13 +224,18 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "050ebba0-0871-4a74-a05c-b914a62e48b4",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							""
+							"pm.test(\"Body contains Voucher Key\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"vocher_amount\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body contains Voucher Value\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"2640.0\");\r",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -236,13 +277,18 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "c466c76b-09c0-4202-bbf3-eef8be3931c5",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							""
+							"pm.test(\"Body contains Voucher Key\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"vocher_amount\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body contains Voucher Value\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"\");\r",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -284,13 +330,18 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "b6df88e6-af92-41bf-b46d-c3531123beb8",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							""
+							"pm.test(\"Body contains Voucher Key\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"vocher_amount\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body contains Voucher Value\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"\");\r",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -332,13 +383,18 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "69dd33c5-06d4-4ef9-bc44-ebc4250758f9",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							""
+							"pm.test(\"Body contains Voucher Key\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"vocher_amount\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body contains Voucher Value\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"2640.0\");\r",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -380,13 +436,18 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "ace799b9-4d3e-4b42-9b33-dbb70082ccbe",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							""
+							"pm.test(\"Body contains Voucher Key\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"vocher_amount\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body contains Voucher Value\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"2640.0\");\r",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -428,13 +489,18 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "892cc7d0-008a-48bf-b9ef-18c62f6e513f",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							""
+							"pm.test(\"Body contains Voucher Key\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"vocher_amount\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body contains Voucher Value\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"2640.0\");\r",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -476,13 +542,18 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "28406fd8-d1a6-4a0a-855c-cdd230c5d5f4",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							""
+							"pm.test(\"Body contains Voucher Key\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"vocher_amount\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body contains Voucher Value\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"2640.0\");\r",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -524,13 +595,18 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "dec82e9f-ab25-4926-92f6-258485ce1e67",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							""
+							"pm.test(\"Body contains Voucher Key\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"vocher_amount\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body contains Voucher Value\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"2640.0\");\r",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -566,6 +642,5 @@
 			},
 			"response": []
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
